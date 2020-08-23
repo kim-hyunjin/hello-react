@@ -8,8 +8,9 @@ import fs from 'fs';
 import {createStore, applyMiddleware} from "redux";
 import {Provider} from 'react-redux';
 import thunk from "redux-thunk";
-import rootReducer from "./modules";
+import rootReducer, {rootSaga} from "./modules";
 import PreloadContext from "./lib/PreloadContext";
+import createSagaMiddleware, {END} from 'redux-saga';
 
 // asset-manifest.json 에서 파일 경로들을 조회한다.
 const manifest = JSON.parse(fs.readFileSync(path.resolve('./build/asset-manifest.json'), 'utf8'));
@@ -49,7 +50,10 @@ const app = express();
 const serverRender = async (req, res, next) => {
     // 이 함수는 404가 떠야 하는 상황에 404를 띄우지 않고 서버 사이드 렌더링을 해준다.
     const context = {};
-    const store = createStore(rootReducer, applyMiddleware(thunk));
+    const sagaMiddleware = createSagaMiddleware();
+    const store = createStore(rootReducer, applyMiddleware(thunk, sagaMiddleware));
+
+    const sagaPromise = sagaMiddleware.run(rootSaga).toPromise(); // sagaMiddleware.run을 통해 만든 task를 Promise로 변환한다. 별도의 작업을 하지 않으면 이 Promise는 끝나지 않는다. 우리가 만든 루트 사가에서 액션을 끝없이 모니터링하기 때문이다.
 
     const preloadContext = {
         done: false,
@@ -67,7 +71,9 @@ const serverRender = async (req, res, next) => {
     );
 
     ReactDOMServer.renderToStaticMarkup(jsx); // renderToStaticMarkup으로 한번 렌더링한다. -> 정적인 페이지를 만들 때 사용. Preloader로 넣어주었던 함수를 호출하는데 처리속도가 renderToString 보다 빠름.
+    store.dispatch(END); // redux-saga의 END액션을 발생시키면 액션을 모니터링하는 사가들이 모두 종료된다.
     try{
+        await sagaPromise; // 기존에 진행 중이던 사가들이 모두 끝날 때까지 기다린다.
         await Promise.all(preloadContext.promises); // 모든 프로미스를 기다린다.
     } catch (e) {
       return res.status(500);
