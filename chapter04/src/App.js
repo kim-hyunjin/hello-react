@@ -1,10 +1,10 @@
 import React from 'react';
-import EventPractice from './EventPractice';
+import EventPracticeFunctionComponent from './EventPractice_FunctionComponent';
 
 function App() {
   return (
     <div className="App">
-      <EventPractice></EventPractice>
+      <EventPracticeFunctionComponent></EventPracticeFunctionComponent>
     </div>
   );
 }
