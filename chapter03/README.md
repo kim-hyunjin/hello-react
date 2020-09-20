@@ -67,3 +67,5 @@ properties를 줄인 표현. 컴포넌트 속성을 설정할 때 사용하는 �
 - https://github.com/facebook/prop-types
 
 ### state
+리액트에서 state는 컴포넌트 내부에서 바뀔 수 있는 값을 의미한다. *반면 props는 부모 컴포넌트가 설정하는 값이며, 자신은 해당 props를 읽기 전용으로만 사용할 수 있다.
+- state의 종류 : 클래스형 컴포넌트의 state, 함수형 컴포넌트의 useState()
