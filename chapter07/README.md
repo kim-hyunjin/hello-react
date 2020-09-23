@@ -31,3 +31,5 @@ constructor => getDerivedStateFromProps => render => componentDidMount
 ### 언마운트
 - componentWllUnmount : 컴포넌트가 웹 브라우저상에서 사라지기 전에 호출하는 메서드.
 
+### 에러 잡아내기
+- componentDidCatch : 에러 발생시 componentDidCatch 메서드 호출
