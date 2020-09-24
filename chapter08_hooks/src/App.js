@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import Info from './Info';
+import Average from './Average';
 
 function App() {
   const [visible, setVisible] = useState(false);
@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <button onClick={() => {setVisible(!visible);}}>{visible? '숨기기':'보이기'}</button>
-      {visible && <Info />}
+      {visible && <Average />}
     </div>
   );
 }
