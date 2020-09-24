@@ -8,4 +8,23 @@ useState 함수의 파라미터에는 상태의 기본값을 넣어준다.<br/>
 
 ### useEffect
 리액트 컴포넌트가 렌더링될 때마다 특정 작업을 수행하도록 설정할 수 있는 Hook. 클래스형 컴포넌트의 componentDidMount와 componentDidUpdate를 합친 형태.<br/>
+
+#### 마운트될 때만 실행
 useEffect에서 설정한 함수를 컴포넌트가 화면에 맨 처음 렌더링될 때만 실행하고, 업데이트될 때는 실행하지 않으려면 함수의 두번째 파라미터로 비어있는 배열을 넣어주면 된다.
+
+#### 특정 값이 업데이트 될때만 실행
+```
+클래스 컴포넌트의 경우
+componentDidUpdate(prevProps, prevState) {
+  if (prevProps.value !== this.props.value) {
+    doSomething();
+  }
+}
+
+useEffect의 경우
+useEffect의 두번째 파라미터로 전달되는 배열에 검사하고 싶은 값을 넣어준다.
+
+useEffect(() => {
+  console.log(name);
+}, [name])
+```
