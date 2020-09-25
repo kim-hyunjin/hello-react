@@ -85,3 +85,9 @@ useMemo(() => {
 
 ### useRef
 함수형 컴포넌트에서 ref를 쉽게 사용할 수 있도록 해준다.
+
+### 커스텀 Hooks
+여러 컴포넌트에서 비슷한 기능을 공유할 경우, Hook로 작성하여 로직을 재사용할 수도 있다.<br/>
+다양한 커스텀 Hooks
+- https://nikgraf.github.io/react-hooks/
+- https://github.com/rehooks/awesome-react-hooks
