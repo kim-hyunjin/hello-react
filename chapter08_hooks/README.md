@@ -64,3 +64,21 @@ useReducer를 사용했을 때 가장 큰 장점은 컴포넌트 업데이트 �
 
 ### useMemo
 함수형 컴포넌트 내부에서 발생하는 연산을 최적화할 수 있다. 렌더링하는 과정에서 특정 값이 바뀌었을 때만 연산을 실행하고, 원하는 값이 바뀌지 않았다면 이전에 연산했던 결과를 다시 사용하는 방식.
+
+### useCallback
+useCallback은 useMemo와 상당히 비슷하다. 주로 렌더링 성능을 최적화해야하는 상황에 사용한다. 이벤트 핸들러 함수를 필요할 때만 생성할 수 있다.
+```
+다음 두 코드는 완전히 똑같은 코드이다.
+useCallback(() => {
+  console.log('hello world!);
+}, []);
+
+useMemo(() => {
+  const fn = () => {
+    console.log('hello world);
+  };
+  return fn;
+}, []);
+```
+- 숫자, 문자열, 객체처럼 일반값을 재사용하려면 useMemo 사용.
+- 함수를 재사용하려면 useCallback 사용.
