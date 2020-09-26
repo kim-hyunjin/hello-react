@@ -48,3 +48,5 @@ yarn add node-sass
 
 #### sass-loader 설정 커스터마이징하기
 1. 먼저 git commit 후 yarn eject로 숨겨진 세부 설정을 꺼낸다.
+2. 생성된 config 디렉토리에서 webpack.config.js를 연다.
+3. sassRegex부분을 찾아 use: 에 있는 'sass-loader' 부분을 지우고, concat을 통해 커스터마이징된 sass-loader 설정을 넣는다.
