@@ -45,3 +45,6 @@ body {
 ```
 yarn add node-sass
 ```
+
+#### sass-loader 설정 커스터마이징하기
+1. 먼저 git commit 후 yarn eject로 숨겨진 세부 설정을 꺼낸다.
