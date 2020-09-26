@@ -18,3 +18,30 @@ CSS클래스가 특정 클래스 내부에 있는 경우에만 스타일을 적�
 }
 ```
 컴포넌트의 최상위 html 요소에는 컴포넌트의 이름으로 클래스 이름을 짓고(.App), 그 내부에서는 소문자를 입력하거나(.logo), header 같은 태그를 사용하여 클래스 이름이 불필요한 경우에는 아예 생략할 수도 있다.
+
+### Sass 사용하기
+Sass(Syntactically Awesome Style Sheets)는 CSS 전처리기로 복잡한 작업을 쉽게 할 수 있도록 해주고, 스타일 코드의 재활용성을 높여 줄 뿐만 아니라 코드의 가독성을 높여 유지보수를 더욱 쉽게 해준다.
+- Sass에서는 확장자 .scss와 .sass를 지원한다.
+```
+.sass
+$font-stack: Helvetica, sans-serif
+$primary-color: #333
+
+body
+  font: 100% $font-stack
+  color: $primary-color
+```
+```
+.scss
+$font-stack: Helvetica, sans-serif;
+$primary-color: #333;
+
+body {
+  font: 100% $font-stack;
+  color: $primary-color;
+}
+```
+.sass와 .scss는 {}와 ;의 유무만 다르다.
+```
+yarn add node-sass
+```
