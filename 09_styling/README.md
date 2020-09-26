@@ -50,3 +50,9 @@ yarn add node-sass
 1. 먼저 git commit 후 yarn eject로 숨겨진 세부 설정을 꺼낸다.
 2. 생성된 config 디렉토리에서 webpack.config.js를 연다.
 3. sassRegex부분을 찾아 use: 에 있는 'sass-loader' 부분을 지우고, concat을 통해 커스터마이징된 sass-loader 설정을 넣는다.
+
+#### node_modules에서 라이브러리 불러오기
+```
+@import '~library/styles';
+물결 문자를 사용하면 자동으로 node_modules에서 라이브러리 디렉터리를 탐지하여 스타일을 불러올 수 있다.
+```
