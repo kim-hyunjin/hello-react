@@ -102,3 +102,30 @@ className={styles.[클래스이름]} 형태도 전달해주면 된다.
 
 `${}` - ES6문법 템플릿 리터럴 사용.
 ```
+
+#### classnames
+classnames는 CSS 클래스를 조건부로 설정할 때 매우 유용한 라이브러리이다.
+```
+yarn add classnames
+```
+```
+ex)
+const MyComponent = ({highlighted, theme}) => (
+  <div className={classNames('MyComponent', {highlighted}, theme)}>Hello</div>
+);
+
+// highlighted 값이 true이면 highlighted 클래스가 적용되고, false이면 적용되지 않는다. 아래와 같다.
+
+const MyComponent = ({highlighted, theme}) => (
+  <div className={`MyComponent ${highlighted? 'highlighted' : ''}, ${theme}`}>Hello</div>
+);
+```
+```
+import classNames from 'classnames/bind';
+
+const cx = classNames.bind(styles);
+
+<div className={cx('wrapper', 'inverted')}>
+  안녕하세요, 저는 <span className="something">CSS Module!</span>
+</div>
+```
