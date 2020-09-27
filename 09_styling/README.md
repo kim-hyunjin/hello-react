@@ -135,3 +135,10 @@ Sass를 사용할 때도 .module.scss 확장자를 사용해주면 CSS Module로
 
 #### CSS Module이 아닌 파일에서 CSS Module 사용하기
 일반 .css/scss 파일에서 :local을 사용해 CSS Module을 사용할 수 있다.
+
+### styled-components
+'CSS-in-JS'방식. 자바스크립트 파일에 스타일까지 작성할 수 있기 때문에 .css나 .scss 파일을 따로 만들지 않아도 된다.
+```
+yarn add styled-components
+```
+- styled-components를 사용하면 props에 전달해 주는 값을 쉽게 스타일에 적용할 수 있다는 것이다.
