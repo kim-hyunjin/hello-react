@@ -142,3 +142,32 @@ Sass를 사용할 때도 .module.scss 확장자를 사용해주면 CSS Module로
 yarn add styled-components
 ```
 - styled-components를 사용하면 props에 전달해 주는 값을 쉽게 스타일에 적용할 수 있다는 것이다.
+
+### Tagged 템플릿 리터럴
+앞에서 `를 사용해 만든 문자열에 스타일 정보를 넣어주었다. -> Tagged 템플릿 리터럴
+```
+
+`hello ${ {foo: 'bar'} } ${() => 'world'}!`
+>> "hello [object Object] () => 'world'!"
+
+```
+
+```
+다음과 같이 함수를 작성하고 나서 해당 함수 뒤에 템플릿 리터럴을 넣어주면 템플릿 안에 넣은 값을 온전히 추출할 수 있다.
+
+function tagged(...args) {
+  console.log(args);
+}
+
+tagged`hello ${ {foo: 'bar'} } ${() => 'world'}!`
+>> (3) [Array(3), {...}, f]
+    0: (3) ["hello ", " ", "!", raw: Array(3)]
+    1: {foo: "bar"}
+    2: () => 'world'
+```
+
+```
+// 태그의 타입을 styled 함수의 인자로 전달할 수 있다.
+const MyInput = styled('input')`background: gray;`
+const MyInput = styled(Link)`color: blue;` // => 컴포넌트를 파라미터로 넣는 경우, 그 컴포넌트에서 className props가 최상위 DOM className 값으로 설정되어 있어야 한다.
+```
