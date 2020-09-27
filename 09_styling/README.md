@@ -129,3 +129,9 @@ const cx = classNames.bind(styles);
   안녕하세요, 저는 <span className="something">CSS Module!</span>
 </div>
 ```
+
+#### Sass와 함께 사용하기
+Sass를 사용할 때도 .module.scss 확장자를 사용해주면 CSS Module로 사용할 수 있다.
+
+#### CSS Module이 아닌 파일에서 CSS Module 사용하기
+일반 .css/scss 파일에서 :local을 사용해 CSS Module을 사용할 수 있다.
