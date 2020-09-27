@@ -171,3 +171,12 @@ tagged`hello ${ {foo: 'bar'} } ${() => 'world'}!`
 const MyInput = styled('input')`background: gray;`
 const MyInput = styled(Link)`color: blue;` // => 컴포넌트를 파라미터로 넣는 경우, 그 컴포넌트에서 className props가 최상위 DOM className 값으로 설정되어 있어야 한다.
 ```
+
+#### 스타일에서 props 조회하기
+```
+const Box = styled.div`
+  background: ${props => props.color || 'blue'};
+  padding: 1rem;
+  display: flex;
+`;
+```
