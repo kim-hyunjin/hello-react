@@ -56,3 +56,49 @@ yarn add node-sass
 @import '~library/styles';
 물결 문자를 사용하면 자동으로 node_modules에서 라이브러리 디렉터리를 탐지하여 스타일을 불러올 수 있다.
 ```
+
+### CSS Module
+CSS를 불러와서 사용할 때 클래스 이름을 고유한 값, [파일 이름]_[클래스이름]_[해시값] 형태로 자동으로 만들어서 컴포넌트 스타일 클래스 이름이 중첩되는 현상을 방지해 주는 기술.<br/>
+```
+CSSModule.module.css
+
+.wrapper {
+  background: black;
+  padding: 1rem;
+  color: white;
+  font-size: 2rem;
+}
+
+/* 글로벌 CSS를 작성하고 싷다면 */
+:global .something {
+  font-weight: 800;
+  color: aqua;
+}
+```
+```
+import styles from './CSSModule.module.css';
+
+const CSSModule = () => {
+  return (
+    <div className={styles.wrapper}>
+      안녕하세요, 저는 <span className="something">CSS Module!</span>
+    </div>
+  )
+};
+```
+```
+$ console.log(styles);
+> {wrapper: "CSSModule_wrapper__1F2tc"}
+
+이 고유한 클래스 이름을 사용하려면 JSX 엘리먼트에
+className={styles.[클래스이름]} 형태도 전달해주면 된다.
+:global을 사용해 전역으로 선언한 클래스의 경우 문자열로 넣어주면 된다.
+```
+```
+두 개 이상 적용할 때
+    <div className={`${styles.wrapper} ${styles.inverted}`}>
+      안녕하세요, 저는 <span className="something">CSS Module!</span>
+    </div>
+
+`${}` - ES6문법 템플릿 리터럴 사용.
+```
