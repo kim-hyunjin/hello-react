@@ -88,3 +88,51 @@ const onInsert = useCallback(
   );
 ```
 useReducer를 사용하는 방법은 상태를 업데이트하는 로직을 모아서 컴포넌트 바깥에 둘 수 있다는 장점이 있다.
+
+
+### 불변성의 중요성
+```
+todos.map(todo => todo.id === action.id ? {...todo, checked: !todo.checked} : todo);
+```
+기존 데이터를 수정할 때 직접 수정하지 않고, 새로운 배열을 만든 다음에 새로운 객체를 만들기 때문에 React.memo를 사용했을 때 props 변경 여부를 알아내 리렌더링 성능을 최적화해줄 수 있다.<br/>
+이렇게 기존의 값을 직접 수정하지 않으면서 새로운 값을 만들어내는것을 '불변성을 지킨다'고 한다.
+```
+const arr = [1, 2, 3, 4, 5];
+
+const nextArrBad = arr; // 똑같은 배열을 가리킴
+nextArrBad[0] = 100;
+console.log(arr === nextArrBad);
+> true
+
+const nextArrGood = [...arr]; // 내부의 값을 복사
+nextArrGood[0] = 100;
+console.log(arr === nextArrGood);
+> false
+```
+```
+const obj = {
+  foo: 'bar',
+  value: 1
+};
+
+const nextObjBad = obj; // 똑같은 객체를 가리킴
+
+nextObjBad.value = nextObjBad.value + 1;
+console.log(obj === nextObjBad);
+> true
+
+const nextObjBad = {
+  ...obj, // 기존에 있던 내용을 복사
+  value: obj.value + 1 // 새로운 값으로 덮어 씀.
+};
+console.log(obj === nextObjGood);
+> false
+```
+불변성이 지켜지지 않으면 객체 내부의 값이 새로워져도 바뀐 것을 감지하지 못한다. => React.memo에서 서로 비교하여 최적화하는 것이 불가해짐.<br/>
+하지만 배열 혹은 객체의 구조가 복잡하다면 불변성을 유지하면서 업데이트하는 것도 까다로워진다. 이런 경우 immer라는 라이브러리의 도움을 받아 편하게 작업할 수 있다.
+
+### TodoList 컴포넌트 최적화하기
+```
+export default React.memo(TodoList);
+```
+리스트에 관련된 컴포넌트를 최적화할때는 리스트 내부에서 사용하는 컴포넌트도 최적화하고, 리스트로 사용되는 컴포넌트 자체도 최적화해주는 것이 좋다.
