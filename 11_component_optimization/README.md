@@ -1,13 +1,12 @@
-# Todo app 만들기
+# 컴포넌트 성능 최적화
+### 느려지는 원인 분석
+컴포넌트는 다음과 같은 상황에서 리렌더링이 발생한다.
+1. 자신이 전달받은 props가 변경될 때
+2. 자신의 state가 바뀔 때
+3. 부모 컴포넌트가 리렌더링될 때
+4. forceUpdate 함수가 실행될 때
 
-```
-yarn add node-sass classnames react-icons
-```
-https://react-icons.github.io/react-icons/
-
-- icon 사용하기
-```
-import {dkdlzhs dlfma} from 'react-icons/md';
-```
-
-- props로 전달해야 할 함수를 만들때는 useCallback을 사용하여 함수를 감싸는 것을 습관하는 것이 좋다. - 함수 재활용성을 높여 성능 향상
+현재 앱에서 '할 일 1'의 항목을 체크할 경우 App 컴포넌트 state가 변경되면서 App 컴포넌트가 리렌더링 된다.<br/>
+부모 컴포넌트가 리렌더링되었으니 TodoList 컴포넌트가 리렌더링되고 그 안의 무수한 컴포넌트들도 리렌더링 된다.<br/>
+'할 일 1'의 항목은 리렌더링되어야 하는 것이 맞지만 나머지는 리렌더링될 필요가 없다.<br/>
+불필요한 리렌더링을 방지해 성능을 최적화해줘야 한다.
