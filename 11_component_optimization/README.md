@@ -56,3 +56,35 @@ $ yarn global add serve
 $ serve -s build
 ```
 
+### useReducer 사용하기
+useState의 함수형 업데이트를 사용하는 대신, useReducer를 사용해도 된다.
+```
+function todoReducer(todos, action) {
+  switch(action.type) {
+    case 'INSERT':
+      return todos.concat(action.todo);
+    case 'REMOVE':
+      return todos.filter(todo => todo.id !== action.id);
+    case 'TOGGLE':
+      return todos.map(todo => todo.id === action.id ? {...todo, checked: !todo.checked} : todo);
+    default:
+      return todos;
+  }
+}
+
+// useReducer 두번째 파라미터로 초기 상태를 넣어주어야 한다.
+const [todos, dispatch] = useReducer(todoReducer, undefined, createBulkTodos);
+
+const onInsert = useCallback(
+    text => {
+      const todo = {
+        id: nextId.current,
+        text,
+        checked: false,
+      };
+      dispatch({type: 'INSERT', todo});
+      nextId.current += 1;
+    }, []
+  );
+```
+useReducer를 사용하는 방법은 상태를 업데이트하는 로직을 모아서 컴포넌트 바깥에 둘 수 있다는 장점이 있다.
