@@ -136,3 +136,35 @@ console.log(obj === nextObjGood);
 export default React.memo(TodoList);
 ```
 리스트에 관련된 컴포넌트를 최적화할때는 리스트 내부에서 사용하는 컴포넌트도 최적화하고, 리스트로 사용되는 컴포넌트 자체도 최적화해주는 것이 좋다.
+
+### react-virtualized
+현재 컴포넌트가 맨 처음 렌더링될 때 2,500개 컴포넌트 중 2,491개 컴포넌트는 스크롤하기 전에는 보이지 않음에도 불구하고 렌더링이 이루어진다.<br/>
+react-virtualized를 사용하면 리스트 컴포넌트에서 스크롤되기 전 보이지 않는 컴포넌트는 렌더링하지 않고 크기만 차지하게끔 할 수 있다.
+```
+$ yarn add react-virtualized
+```
+```
+const TodoList = ({todos, onRemove, onToggle}) => {
+  const rowRenderer = useCallback(
+    ({index, key, style}) => {
+      const todo = todos[index];
+      return (
+        <TodoListItem todo={todo} key={key} onRemove={onRemove} onToggle={onToggle} style={style} />
+      );
+    }, [onRemove, onToggle, todos]
+  );
+  return (
+    <List
+      className="TodoList"
+      width={512} // 전체 크기
+      height={513} // 전체 높이
+      rowCount={todos.length}
+      rowHeight={57}
+      rowRenderer={rowRenderer} // 항목을 렌더링할 함수
+      list={todos} // 배열
+      style={{outline: 'none'}} // List에 기본 적용되는 outline 스타일 제거
+    />
+  )
+};
+```
+리액트 컴포넌트의 렌더링은 기본적으로 빠르기 때문에 일일이 React.memo를 작성할 필요는 없다. 단, 리스트와 관련된 컴포넌트를 만들 때 보여줄 항목이 100개 이상이고 업데이트가 자주 발생한다면 꼭 최적화해줘야 한다.
