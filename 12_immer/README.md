@@ -39,3 +39,18 @@ const nextState = produce(originalState, draft => {
   draft.splice(draft.findIndex(t => t.id === 1), 1);
 });
 ```
+
+#### useState의 함수형 업데이트와 immer 함께 쓰기
+immer에서 제공하는 produce 함수를 호출할 때, 첫 번째 파라미터가 함수 형태라면 업데이트 함수를 반환한다.
+```
+const update = produce(draft => {
+  draft.value = 2;
+});
+const originalState = {
+  value: 1,
+  foo: 'bar',
+};
+const nextState = update(originalState);
+console.log(nextState);
+> {value: 2, foo: 'bar'}
+```
