@@ -55,3 +55,18 @@ const Profile = ({match}) => {
   ...
 }
 ```
+
+쿼리는 location 객체 안 search 값에서 조회할 수 있다.
+```
+location의 형태
+{
+  "pathname": "/about",
+  "search": "?detail=true",
+  "hash": ""
+}
+```
+쿼리 문자열을 객체로 변환할 때는 qs라는 라이브러리를 사용한다.
+```
+yarn add qs
+```
+쿼리를 사용할 때는 쿼리 문자열을 객체로 파싱하는 과정에서 결과 값은 언제나 문자열이다.
