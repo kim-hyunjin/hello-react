@@ -36,3 +36,22 @@ Link 컴포넌트 자체는 a태그로 이루어져 있지만, 페이지 전환�
 ```
 <Link to="주소">내용</Link>
 ```
+
+### URL 파라미터와 쿼리
+```
+파라미터
+/profiles/somebody
+
+쿼리
+/about?details=true
+```
+
+URL 파라미터를 사용할 때는 라우트로 사용되는 컴포넌트에서 받아오는 match라는 객체 안의 params 값을 참조한다.
+```
+<Route path="/profile/:username" component={Profile} />
+
+const Profile = ({match}) => {
+  const {username} = match.params;
+  ...
+}
+```
