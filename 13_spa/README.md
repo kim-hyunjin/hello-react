@@ -107,3 +107,6 @@ export default withRouter(WithRouterSample);
 ```
 withRouter를 사용할 때는 컴포넌트를 내보낼 때 함수로 감싸준다.<br/>
 JSON.stringify의 두 번째, 세 번째 파라미터를 위와 같이 null, 2로 설정하면 JSON에 들여쓰기가 적용된 상태로 문자열이 만들어진다.
+
+### Switch
+Switch 컴포넌트는 여러 Route를 감싸서 그 중 일치라는 단 하나의 라우트만을 렌더링 시켜준다. 모든 규칙과 일치하지 않을 때 보여줄 Not Found 페이지도 구현할 수 있다.
