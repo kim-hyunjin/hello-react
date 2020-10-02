@@ -102,3 +102,9 @@ async function runTasks() {
   }
 }
 ```
+
+### axios로 API 호출해 데이터 받아 오기
+axios는 현재 가장 많이 사용되고 있는 자바스크립트 HTTP 클라이언트다. HTTP 요청을 Promise 기반으로 처리한다는 것이 특징이다.
+```
+yarn add axios
+```
