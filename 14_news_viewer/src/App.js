@@ -3,9 +3,12 @@ import axios from 'axios';
 
 function App() {
   const [data, setData] = useState(null);
+  const url = 'http://newsapi.org/v2/top-headlines?' +
+          'country=kr&' +
+          'apiKey=80c7785acfbd48448a82e895b4629224';
   const onClick = async () => {
     try {
-      const response = await axios.get('https://jsonplaceholder.typicode.com/todos/1')
+      const response = await axios.get(url);
       setData(response.data);
     } catch(e) {
       console.log(e);
