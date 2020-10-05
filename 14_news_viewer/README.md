@@ -108,3 +108,58 @@ axios는 현재 가장 많이 사용되고 있는 자바스크립트 HTTP 클라
 ```
 yarn add axios
 ```
+
+### Route 적용하기
+index.js
+```
+import {BrowserRouter} from 'react-router-dom';
+
+ReactDOM.render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+  document.getElementById('root')
+);
+```
+
+App.js
+```
+<Route path="/:category?" component={NewsPage} />
+
+뒤에 붙은 ?의 의미 : category 값이 선택적이라는 의미
+```
+
+NewsPage.js
+```
+const NewsPage = ({match}) => {
+  const category = match.params.category || 'all';
+
+  return (
+    <>
+      <Categories />
+      <NewsList category={category} />
+    </>
+  );
+};
+```
+
+Categories.js
+```
+import React from 'react';
+import styled from 'styled-components';
+import {NavLink} from 'react-router-dom';
+
+const Category = styled(NavLink)`(...)`;
+
+{categories.map(c => (
+  <Category
+    key={c.name}
+    activeClassName="active"
+    exact={c.name === 'all'}
+    to={c.name === 'all' ? '/' : `/${c.name}`}
+  >{c.text}</Category>
+))}
+```
+
+NavLink로 만들어진 Category 컴포넌트에 to 값은 "/카테고리이름"으로 설정.<br/>
+전체보기의 경우 "/all" 대신 "/"로 설정. to 값이 "/"를 가리키고 있을 때는 exact 값을 true로 해줘야 한다.
