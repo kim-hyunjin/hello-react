@@ -163,3 +163,37 @@ const Category = styled(NavLink)`(...)`;
 
 NavLink로 만들어진 Category 컴포넌트에 to 값은 "/카테고리이름"으로 설정.<br/>
 전체보기의 경우 "/all" 대신 "/"로 설정. to 값이 "/"를 가리키고 있을 때는 exact 값을 true로 해줘야 한다.
+
+### 커스텀 Hook 만들기
+```
+import {useState, useEffect} from 'react';
+
+export default function usePromise(promiseCreator, deps) {
+  const [loading, setLoading] = useState(false);
+  const [resolved, setResolved] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const process = async () => {
+      setLoading(true);
+      try {
+        const resolved = await promiseCreator();
+        setResolved(resolved);
+      } catch (e) {
+        setError(e);
+      }
+      setLoading(false);
+    };
+    process();
+    // eslint-disable-next-line
+  }, deps);
+
+  return [loading, resolved, error];
+}
+
+```
+커스텀 Hook을 사용하면 NewsList에서 대기 중 상태 관리와 useEffect 설정을 직접 하지 않아도 된다.
+<br/>
+
+**주의사항
+- useEffect에 등록하는 함수는 async로 작성하면 안된다. 그 대신 함수 내부에 async 함수를 따로 만들어 줘야 한다.
