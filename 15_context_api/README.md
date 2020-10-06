@@ -31,3 +31,7 @@ createContext 함수에 파라미터로 넣어준 기본값은 Provider를 사�
 
 ### 동적 Context 사용하기
 Context의 value에 함수를 전달해 줄 수도 있다.
+
+### useContext Hook 사용하기
+useContext Hook을 사용하면 함수형 컴포넌트에서 Context를 아주 편하게 사용할 수 있다. 단, 클래스형 컴포넌트에서는 사용할 수 없다.
+
