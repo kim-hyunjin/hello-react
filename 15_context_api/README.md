@@ -35,3 +35,7 @@ Context의 value에 함수를 전달해 줄 수도 있다.
 ### useContext Hook 사용하기
 useContext Hook을 사용하면 함수형 컴포넌트에서 Context를 아주 편하게 사용할 수 있다. 단, 클래스형 컴포넌트에서는 사용할 수 없다.
 
+### static contextType 사용하기
+클래스형 컴포넌트에서 Context를 좀 더 쉽게 사용하고 싶다면 static contextType을 정의하는 방법이 있다.<br/>
+static contextType을 정의하면 클래스 메서드에서도 Context에 넣어 둔 함수를 호출할 수 있다.<br/>
+그러나 한 클래스에서 하나의 Context밖에 사용하지 못한다는 단점이 있다.
