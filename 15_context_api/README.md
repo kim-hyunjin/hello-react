@@ -28,3 +28,6 @@ Consumer 사이에 중괄호를 열어 그 안에 함수를 넣어줌. - Functio
 ```
 Provider 사용 시 value 값을 명시해 주어야 한다.<br/>
 createContext 함수에 파라미터로 넣어준 기본값은 Provider를 사용하지 않았을 때만 사용된다.
+
+### 동적 Context 사용하기
+Context의 value에 함수를 전달해 줄 수도 있다.
