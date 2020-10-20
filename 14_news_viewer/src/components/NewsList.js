@@ -20,9 +20,10 @@ const NewsListBlock = styled.div`
 const NewsList = ({category}) => {
   const [loading, response, error] = usePromise(() => {
     const query = category === 'all' ? '' : `&category=${category}`;
-    return axios.get('http://newsapi.org/v2/top-headlines' +
+    return axios.get('/v2/top-headlines' +
     `?country=kr${query}` +
-    '&apiKey=80c7785acfbd48448a82e895b4629224');
+    '&apiKey=80c7785acfbd48448a82e895b4629224'
+    );
   }, [category]);
 
   if(loading) {
