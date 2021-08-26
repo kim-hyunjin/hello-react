@@ -52,10 +52,17 @@ export const list = async (ctx) => {
       .sort({ _id: -1 }) // id를 기준으로 내림차순 정렬. 1: 오름차순 -1: 내림차순
       .limit(10)
       .skip((page - 1) * 10)
+      .lean() // JSON 형태로 바로 조회할 수 있게 해준다.
       .exec();
     const postCount = await Post.countDocuments().exec();
-    ctx.set('Last-Page', Math.ceil(postCount / 10));
-    ctx.body = posts;
+    ctx.set('Last-Page', Math.ceil(postCount / 10)); // 커스텀 헤더 설정
+    ctx.body = posts
+      // .map((post) => post.toJSON())
+      .map((post) => ({
+        ...post,
+        body:
+          post.body.length < 200 ? post.body : `${post.body.slice(0, 200)}...`,
+      }));
   } catch (e) {
     ctx.throw(500, e);
   }
