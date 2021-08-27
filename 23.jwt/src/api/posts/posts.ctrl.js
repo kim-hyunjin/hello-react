@@ -68,8 +68,14 @@ export const list = async (ctx) => {
     return;
   }
 
+  const { tag, username } = ctx.query;
+  const query = {
+    ...(username ? { 'user.username': username } : {}),
+    ...(tag ? { tags: tag } : {}),
+  };
+
   try {
-    const posts = await Post.find()
+    const posts = await Post.find(query)
       .sort({ _id: -1 }) // id를 기준으로 내림차순 정렬. 1: 오름차순 -1: 내림차순
       .limit(10)
       .skip((page - 1) * 10)
