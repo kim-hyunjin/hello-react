@@ -10,24 +10,28 @@ const PostSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  user: {
+    _id: mongoose.Types.ObjectId,
+    username: String,
+  },
 });
 
 const Post = mongoose.model('Post', PostSchema); // 스키마 이름과 스키마 객체를 파라미터로 넣어준다. => 스키마 이름을 정해주면 데이터베이스가 그 이름의 복수 형태로 db에 컬렉션을 만든다.
 export default Post;
 
-const AuthorSchema = new Schema({
-  name: String,
-  email: String,
-});
-const BookSchema = new Schema({
-  title: String,
-  description: String,
-  authors: [AuthorSchema], // 스키마 내부에 다른 스키마를 내장시킬 수도 있다.
-  meta: {
-    likes: Number,
-  },
-  extra: Schema.Types.Mixed,
-});
+// const AuthorSchema = new Schema({
+//   name: String,
+//   email: String,
+// });
+// const BookSchema = new Schema({
+//   title: String,
+//   description: String,
+//   authors: [AuthorSchema], // 스키마 내부에 다른 스키마를 내장시킬 수도 있다.
+//   meta: {
+//     likes: Number,
+//   },
+//   extra: Schema.Types.Mixed,
+// });
 
 /**
  * Schema 에서 지원하는 타입
