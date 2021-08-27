@@ -8,8 +8,9 @@ posts.post('/', checkLoggedIn, postCtrl.write);
 
 const post = new Router();
 post.get('/', postCtrl.read);
-post.delete('/', checkLoggedIn, postCtrl.remove);
-post.patch('/', checkLoggedIn, postCtrl.update);
-posts.use('/:id', postCtrl.checkObjectId, post.routes()); // id 파라미터 검증 미들웨어 적용
+post.delete('/', checkLoggedIn, postCtrl.checkOwnPost, postCtrl.remove);
+post.patch('/', checkLoggedIn, postCtrl.checkOwnPost, postCtrl.update);
+
+posts.use('/:id', postCtrl.getPostById, post.routes());
 
 export default posts;
