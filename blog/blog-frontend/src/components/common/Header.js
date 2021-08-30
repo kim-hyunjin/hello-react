@@ -33,7 +33,12 @@ const Spacer = styled.div`
   height: 4rem;
 `;
 
-const Header = () => {
+const UserInfo = styled.div`
+  font-weight: 800;
+  margin-right: 1rem;
+`;
+
+const Header = ({ user }) => {
   return (
     <>
       <HeaderBlock>
@@ -42,7 +47,14 @@ const Header = () => {
             REACTERS
           </Link>
           <div className="right">
-            <Button to="/login">로그인</Button>
+            {user ? (
+              <>
+                <UserInfo>{user.username}</UserInfo>
+                <Button>로그아웃</Button>
+              </>
+            ) : (
+              <Button to="/login">로그인</Button>
+            )}
           </div>
         </Wrapper>
       </HeaderBlock>
