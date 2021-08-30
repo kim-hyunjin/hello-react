@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeField, initializeForm, register } from '../../modules/auth';
 import AuthFrom from '../../components/auth/AuthForm';
@@ -13,6 +13,7 @@ const RegisterForm = ({ history }) => {
     authError: auth.authError,
     user: user.user,
   }));
+  const [error, setError] = useState();
 
   const onChange = (e) => {
     const { value, name } = e.target;
@@ -22,8 +23,13 @@ const RegisterForm = ({ history }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     const { username, password, passwordConfirm } = form;
+
+    if ([username, password, passwordConfirm].includes('')) {
+      setError('빈 칸으로 모두 입력해주세요.');
+      return;
+    }
     if (password !== passwordConfirm) {
-      //TODO 오류처리
+      setError('비밀번호가 일치하지 않습니다.');
       return;
     }
     dispatch(register({ username, password }));
@@ -35,8 +41,11 @@ const RegisterForm = ({ history }) => {
 
   useEffect(() => {
     if (authError) {
-      console.log('오류 발생');
-      console.log(authError);
+      if (authError.response.status === 409) {
+        setError('이미 존재하는 계정명입니다.');
+        return;
+      }
+      setError('회원가입 실패');
       return;
     }
     if (auth) {
@@ -58,6 +67,7 @@ const RegisterForm = ({ history }) => {
       form={form}
       onChange={onChange}
       onSubmit={onSubmit}
+      error={error}
     />
   );
 };
