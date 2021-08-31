@@ -9,10 +9,10 @@ const TagsBlock = styled.div`
     display: inline-block;
     color: ${palette.cyan[7]};
     text-decoration: none;
-  }
-  margin-right: 0.5rem;
-  &:hover {
-    color: ${palette.cyan[6]};
+    margin-right: 0.5rem;
+    &:hover {
+      color: ${palette.cyan[6]};
+    }
   }
 `;
 
