@@ -8,7 +8,7 @@ const HeaderBlock = styled.div`
   position: fixed;
   width: 100%;
   background: white;
-  bax-shadow: 0px 2px 4px rgba(0, 0, 0, 0);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0);
 `;
 
 const Wrapper = styled(Responsive)`
