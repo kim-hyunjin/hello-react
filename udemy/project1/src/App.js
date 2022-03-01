@@ -1,4 +1,4 @@
-import Card from "./components/Card";
+import React from "react";
 import Expenses from "./components/Expenses";
 
 function App() {
@@ -24,11 +24,19 @@ function App() {
         },
     ];
 
-    return (
-        <Card>
-            <Expenses expenses={expenses}></Expenses>
-        </Card>
+    return React.createElement(
+        "div",
+        {},
+        React.createElement("h2", {}, "Let's get started!"),
+        React.createElement(Expenses, { expenses: expenses })
     );
+
+    // return (
+    //     <div>
+    //         <h2>Let's get started!</h2>
+    //         <Expenses expenses={expenses}></Expenses>
+    //     </div>
+    // );
 }
 
 export default App;
