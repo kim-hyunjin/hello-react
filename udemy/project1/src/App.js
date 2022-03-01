@@ -1,3 +1,4 @@
+import Card from "./components/Card";
 import Expenses from "./components/Expenses";
 
 function App() {
@@ -24,9 +25,9 @@ function App() {
     ];
 
     return (
-        <div>
+        <Card>
             <Expenses expenses={expenses}></Expenses>
-        </div>
+        </Card>
     );
 }
 
