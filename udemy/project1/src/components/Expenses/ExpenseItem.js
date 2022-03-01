@@ -1,14 +1,25 @@
+import { useState } from "react";
 import Card from "../UI/Card";
 import ExpenseDate from "./ExpenseDate";
 import "./ExpenseItem.css";
 
 function ExpenseItem({ expense }) {
-    let { title, date, amount } = expense;
+    // register state to component.
+    // only for the first time, react initialize state with initial value.
+    // after, react detect this state had been initialized
+    const [title, setTitle] = useState(expense.title);
+    const { date, amount } = expense;
+    console.log("ExpenseItem evaluated by React!");
 
     function changeTitleClickHandler() {
-        console.log("Clicked!");
-        title = "Updated!";
-        console.log(title); // Updated! but... it doesn't reflected to our page... cuz our ExpenseItem() funtion doesn't called again!
+        // title = "Updated!";
+        // console.log(title); // Updated! but... it doesn't reflected to our page... because our ExpenseItem() funtion doesn't called again!
+
+        // we need to use state
+        // if we use state update function, react execute again our Component function
+        // but, if next state is the same as before, React won't call Component function
+        setTitle("Updated!");
+        console.log(title);
     }
 
     return (
