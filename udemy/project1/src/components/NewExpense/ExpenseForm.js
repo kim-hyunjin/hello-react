@@ -3,18 +3,34 @@ import React, { useState } from 'react';
 import './ExpenseForm.css';
 
 const ExpenseForm = () => {
-  const [title, setTitle] = useState('');
-  const [amount, setAmount] = useState(0);
-  const [date, setDate] = useState('');
-
+  // const [title, setTitle] = useState('');
+  // const [amount, setAmount] = useState(0);
+  // const [date, setDate] = useState('');
+  const [userInput, setUserInput] = useState({
+    title: '',
+    amount: 0,
+    date: '',
+  });
   const titleChangeHandler = (event) => {
-    setTitle(event.target.value);
+    // setTitle(event.target.value);
+    setUserInput({
+      ...userInput,
+      title: event.target.value,
+    });
   };
   const amountChangeHandler = (event) => {
-    setAmount(Number(event.target.value));
+    // setAmount(Number(event.target.value));÷
+    setUserInput({
+      ...userInput,
+      amount: Number(event.target.value),
+    });
   };
   const dateChangeHandler = (event) => {
-    setDate(event.target.value);
+    // setDate(event.target.value);
+    setUserInput({
+      ...userInput,
+      date: event.target.value,
+    });
   };
 
   return (
@@ -26,11 +42,11 @@ const ExpenseForm = () => {
         </div>
         <div className='new-expense__control'>
           <label>Amount</label>
-          <input type={'number'} min='0.01' step={'0.01'} />
+          <input type={'number'} onChange={amountChangeHandler} min='0.01' step={'0.01'} />
         </div>
         <div className='new-expense__control'>
           <label>Date</label>
-          <input type={'date'} onChange={amountChangeHandler} min='2019-01-01' max='2022-12-31' />
+          <input type={'date'} onChange={dateChangeHandler} min='2019-01-01' max='2022-12-31' />
         </div>
       </div>
       <div className='new-expense__actions'>
