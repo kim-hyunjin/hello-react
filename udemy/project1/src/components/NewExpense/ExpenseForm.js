@@ -13,9 +13,17 @@ const ExpenseForm = () => {
   });
   const titleChangeHandler = (event) => {
     // setTitle(event.target.value);
-    setUserInput({
-      ...userInput,
-      title: event.target.value,
+    // setUserInput({
+    //   ...userInput,
+    //   title: event.target.value,
+    // });
+
+    // 아래와 같이 하면 prevState가 최신 state임을 보장할 수 있다.
+    setUserInput((prevState) => {
+      return {
+        ...prevState,
+        title: event.target.value,
+      };
     });
   };
   const amountChangeHandler = (event) => {
