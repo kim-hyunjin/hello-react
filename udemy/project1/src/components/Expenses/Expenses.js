@@ -1,6 +1,6 @@
 import Card from '../UI/Card';
 import ExpensesFilter from './ExpensesFilter';
-import ExpenseItem from './ExpenseItem';
+import ExpenseList from './ExpenseList';
 import './Expenses.css';
 import { useMemo, useState } from 'react';
 
@@ -18,19 +18,10 @@ function Expenses({ expenses }) {
     });
   }, [expenses, selectedYear]);
 
-  const expenseContent = useMemo(() => {
-    if (filteredExpenses.length === 0) {
-      return <p>No expenses found.</p>;
-    }
-    return filteredExpenses.map((expense) => (
-      <ExpenseItem key={expense.id} expense={expense}></ExpenseItem>
-    ));
-  }, [filteredExpenses]);
-
   return (
-    <Card className='expenses'>
+    <Card className="expenses">
       <ExpensesFilter selected={selectedYear} onFilterChange={filterChangeHandler} />
-      {expenseContent}
+      <ExpenseList items={filteredExpenses} />
     </Card>
   );
 }
