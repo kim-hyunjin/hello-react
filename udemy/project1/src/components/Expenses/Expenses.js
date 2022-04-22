@@ -3,12 +3,12 @@ import ExpensesFilter from './ExpensesFilter';
 import ExpenseList from './ExpenseList';
 import './Expenses.css';
 import { useMemo, useState } from 'react';
+import ExpensesChart from './ExpensesChart';
 
 function Expenses({ expenses }) {
   const [selectedYear, setSelectedYear] = useState('2022');
 
   const filterChangeHandler = (selected) => {
-    console.log(selected);
     setSelectedYear(selected);
   };
 
@@ -21,6 +21,7 @@ function Expenses({ expenses }) {
   return (
     <Card className="expenses">
       <ExpensesFilter selected={selectedYear} onFilterChange={filterChangeHandler} />
+      <ExpensesChart expenses={filteredExpenses} />
       <ExpenseList items={filteredExpenses} />
     </Card>
   );
