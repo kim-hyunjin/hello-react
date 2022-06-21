@@ -1,1 +1,2 @@
-리액트 학습
+# react practice
+patiently, persistently, you are bound to succeed
