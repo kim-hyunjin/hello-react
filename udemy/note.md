@@ -25,3 +25,38 @@
 - Only call React Hooks at the TOP Level
   - Don't call them in nested functions, any block statements
 - unofficial Rule for useEffect(): Always add everything you refer to inside of useEffect() as a dependency unless there is no good reason not do
+
+# Behind the scene
+
+## How Does React Work Behind The Scene?
+
+```
+React - A JavaScript library for building user interfaces
+ReactDOM - Interface to the web
+```
+
+```
+data(Props, State, Context) => components => Real DOM(What the user sees)
+```
+
+### how react components => real DOM
+
+1. React determines how the component tree currently looks like and what it should look like
+2. ReactDOM receives the differences and then manipulates the real DOM
+
+```
+Re-Evaluating !== Re-Rendering
+
+react executes component function
+=> Re-evaluated whenever props, state or context changes
+
+changes to the real DOM are only made for differences between evaluations
+```
+
+### Virtual DOM diffing
+
+실제 DOM을 조작하는 것은 비용이 비싸기 때문에, evaluation을 거쳐 차이가 있는 부분만 DOM에 적용한다.
+
+## Understanding the Virtual DOM & DOM Updates
+
+## Understanding State & State Updates
