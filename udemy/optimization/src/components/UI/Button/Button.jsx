@@ -16,4 +16,4 @@ const Button = (props) => {
   );
 };
 
-export default Button;
+export default React.memo(Button); // check the props, only execute when props change. BUT! this optimization also has cost of comparing props
