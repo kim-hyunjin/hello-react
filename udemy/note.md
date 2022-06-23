@@ -60,3 +60,20 @@ changes to the real DOM are only made for differences between evaluations
 ## Understanding the Virtual DOM & DOM Updates
 
 ## Understanding State & State Updates
+
+```
+State Management <=> Components
+
+useState hook
+create state & attach to component by react
+```
+
+```
+Our Code                | React
+<MyProduct />             Current State : 'DVD'
+setNewProduct('book')     Schedules a State Update with data 'book'
+                          New State : 'book'
+                          Re-evaluate Component(re-reun Component Function)
+```
+
+https://velog.io/@ckvelog/react-batch-update
