@@ -77,3 +77,11 @@ setNewProduct('book')     Schedules a State Update with data 'book'
 ```
 
 https://velog.io/@ckvelog/react-batch-update
+
+# useState() vs useReducer()
+
+| useState                                                               | useReducer                                                    |
+| ---------------------------------------------------------------------- | ------------------------------------------------------------- |
+| The main state management tool                                         | Great if you need more power                                  |
+| Great for independent pieces of state/data                             | should be considered if you have related pieces of state/data |
+| Greate if state updates are easy and limited to a few kinds of updates | Can be helpful if you have more complex state updates         |

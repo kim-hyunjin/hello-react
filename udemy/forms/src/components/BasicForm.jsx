@@ -1,4 +1,5 @@
 import useInput from '../hooks/useInput';
+import useInputReducer from '../hooks/useInputReducer';
 
 const isNotEmpty = (value) => value.trim() !== '';
 const isEmail = (value) => value.includes('@');
@@ -6,7 +7,7 @@ const isEmail = (value) => value.includes('@');
 const BasicForm = (props) => {
   const firstNameInput = useInput(isNotEmpty);
   const lastNameInput = useInput(isNotEmpty);
-  const emailInput = useInput(isEmail);
+  const emailInput = useInputReducer(isEmail);
 
   const formIsValid = firstNameInput.isValid && lastNameInput.isValid && emailInput.isValid;
 
