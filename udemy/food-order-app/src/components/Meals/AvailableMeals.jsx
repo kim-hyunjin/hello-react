@@ -1,36 +1,27 @@
+import { useEffect, useState } from 'react';
 import Card from '../UI/Card';
 import styles from './AvailableMeals.module.css';
 import MealItem from './MealItem/MealItem';
 
-const DUMMY_MEALS = [
-  {
-    id: 'm1',
-    name: 'Sushi',
-    description: 'Finest fish and veggies',
-    price: 22.99,
-  },
-  {
-    id: 'm2',
-    name: 'Schnitzel',
-    description: 'A german specialty!',
-    price: 16.5,
-  },
-  {
-    id: 'm3',
-    name: 'Barbecue Burger',
-    description: 'American, raw, meaty',
-    price: 12.99,
-  },
-  {
-    id: 'm4',
-    name: 'Green Bowl',
-    description: 'Healthy...and green...',
-    price: 18.99,
-  },
-];
-
 const AvailableMeals = (props) => {
-  const mealsList = DUMMY_MEALS.map((meal) => <MealItem key={meal.id} meal={meal} />);
+  const [meals, setMeals] = useState([]);
+  const mealsList = meals.map((meal) => <MealItem key={meal.id} meal={meal} />);
+
+  useEffect(() => {
+    const fetchMeals = async () => {
+      const response = await fetch(
+        'https://food-order-app-7c79d-default-rtdb.asia-southeast1.firebasedatabase.app/meals.json'
+      );
+      const data = await response.json();
+      const meals = Object.keys(data).map((key) => ({
+        ...data[key],
+        id: key,
+      }));
+      setMeals(meals);
+    };
+
+    fetchMeals();
+  }, []);
 
   return (
     <section className={styles.meals}>
