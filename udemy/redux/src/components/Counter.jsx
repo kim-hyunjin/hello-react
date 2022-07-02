@@ -8,8 +8,8 @@ import classes from './Counter.module.css';
 const Counter = () => {
   // when you use useSelector hook, react-redux automatically set up a subscription to the Redux store for this component
   // and when this component unmounted, react-redux automatically clear a subscription
-  const counter = useSelector((state) => state.counter);
-  const showCounter = useSelector((state) => state.showCounter);
+  const counter = useSelector((state) => state.counter.counter);
+  const showCounter = useSelector((state) => state.counter.showCounter);
 
   const dispatch = useDispatch();
 
