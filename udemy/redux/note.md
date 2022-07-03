@@ -104,3 +104,12 @@ store.subscribe(counterSubscriber);
 store.dispatch({ type: 'increment' });
 store.dispatch({ type: 'decrement' });
 ```
+
+## Side Effects, Async Tasks & Redux
+
+Reducers must be pure, side-effect free, synchronous functions
+
+### Where should side-effects and async tasks be executed?
+
+- Inside the components(e.g. useEffect())
+- Inside the action creators
