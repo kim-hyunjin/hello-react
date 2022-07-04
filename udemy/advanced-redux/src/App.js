@@ -25,9 +25,11 @@ function App() {
       return;
     }
 
-    // redux-toolkit will execute the function which 'sendCartData' returns
-    // by doing this, we have lean components
-    dispatch(sendCartData(cart));
+    if (cart.changed) {
+      // redux-toolkit will execute the function which 'sendCartData' returns
+      // by doing this, we have lean components
+      dispatch(sendCartData(cart));
+    }
   }, [cart, dispatch]);
 
   return (
